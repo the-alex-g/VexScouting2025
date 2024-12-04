@@ -1,0 +1,131 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqdf5u474ojx"]
+
+[ext_resource type="PackedScene" uid="uid://cue2tgc53d7p8" path="res://team.tscn" id="1_as5hc"]
+[ext_resource type="Script" path="res://main.gd" id="1_ij781"]
+[ext_resource type="PackedScene" uid="uid://brk8yoravkajb" path="res://team_lookup.tscn" id="3_0uds8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xijnb"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ujlv"]
+bg_color = Color(0, 0, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ij781")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Teams" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RedTeam" type="PanelContainer" parent="ScrollContainer/VBoxContainer/Teams"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xijnb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Teams/RedTeam"]
+layout_mode = 2
+
+[node name="RedTeam1" parent="ScrollContainer/VBoxContainer/Teams/RedTeam/VBoxContainer" instance=ExtResource("1_as5hc")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer/Teams/RedTeam/VBoxContainer"]
+layout_mode = 2
+
+[node name="RedTeam2" parent="ScrollContainer/VBoxContainer/Teams/RedTeam/VBoxContainer" instance=ExtResource("1_as5hc")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer/Teams/RedTeam/VBoxContainer"]
+layout_mode = 2
+
+[node name="RedTeamScore" type="LineEdit" parent="ScrollContainer/VBoxContainer/Teams/RedTeam/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Match Score"
+
+[node name="BlueTeam" type="PanelContainer" parent="ScrollContainer/VBoxContainer/Teams"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ujlv")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/Teams/BlueTeam"]
+layout_mode = 2
+
+[node name="BlueTeam1" parent="ScrollContainer/VBoxContainer/Teams/BlueTeam/VBoxContainer" instance=ExtResource("1_as5hc")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer/Teams/BlueTeam/VBoxContainer"]
+layout_mode = 2
+
+[node name="BlueTeam2" parent="ScrollContainer/VBoxContainer/Teams/BlueTeam/VBoxContainer" instance=ExtResource("1_as5hc")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer/Teams/BlueTeam/VBoxContainer"]
+layout_mode = 2
+
+[node name="BlueTeamScore" type="LineEdit" parent="ScrollContainer/VBoxContainer/Teams/BlueTeam/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Match Score"
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TeamLookup" parent="ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_0uds8")]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TeamLookup2" parent="ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("3_0uds8")]
+layout_mode = 2
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]

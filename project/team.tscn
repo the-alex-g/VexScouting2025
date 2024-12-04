@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://cue2tgc53d7p8"]
+
+[ext_resource type="Script" path="res://team.gd" id="1_k73c8"]
+
+[node name="Team" type="VBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_k73c8")
+
+[node name="TeamID" type="LineEdit" parent="."]
+layout_mode = 2
+placeholder_text = "Team ID"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "AUTONOMOUS PERIOD"
+horizontal_alignment = 1
+
+[node name="Auton" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RingsScored" type="LineEdit" parent="Auton"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Rings"
+max_length = 1
+
+[node name="Bar" type="CheckBox" parent="Auton"]
+layout_mode = 2
+text = "Touched Bar"
+
+[node name="CrossedLine" type="CheckBox" parent="Auton"]
+layout_mode = 2
+text = "Crossed Line"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "DRIVER CONTROL PERIOD"
+horizontal_alignment = 1
+
+[node name="DriverControl" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TotalRingsScored" type="LineEdit" parent="DriverControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Total Rings Scored"
+max_length = 2
+
+[node name="ClimbLevel" type="LineEdit" parent="DriverControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Climb Level"
+max_length = 1
+
+[node name="DriverControl2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="WallStake" type="CheckBox" parent="DriverControl2"]
+layout_mode = 2
+text = "Wall Stake"
+
+[node name="HighStake" type="CheckBox" parent="DriverControl2"]
+layout_mode = 2
+text = "High Stake"
+
+[node name="GoalClamp" type="CheckBox" parent="DriverControl2"]
+layout_mode = 2
+text = "Goal Clamp"
+
+[node name="Notes" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NoteField" type="LineEdit" parent="Notes"]
+layout_mode = 2
+placeholder_text = "Notes"

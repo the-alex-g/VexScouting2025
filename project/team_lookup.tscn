@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://brk8yoravkajb"]
+
+[ext_resource type="Script" path="res://team_lookup.gd" id="1_m4dl8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5dquq"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i3ehu"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="TeamLookup" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_m4dl8")
+
+[node name="TeamId" type="LineEdit" parent="."]
+layout_mode = 2
+placeholder_text = "Team Lookup"
+
+[node name="ResultsContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="AutonomousHeader" type="Label" parent="ResultsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Autonomous Tasks"
+label_settings = SubResource("LabelSettings_5dquq")
+horizontal_alignment = 1
+
+[node name="DriverControlHeader" type="Label" parent="ResultsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Driver Control"
+label_settings = SubResource("LabelSettings_5dquq")
+horizontal_alignment = 1
+
+[node name="AutonomousTasks" type="Label" parent="ResultsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DriverTasks" type="Label" parent="ResultsContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="NoteContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NoteHeader" type="Label" parent="NoteContainer"]
+layout_mode = 2
+text = "Notes"
+label_settings = SubResource("LabelSettings_i3ehu")
+horizontal_alignment = 1
+
+[node name="Notes" type="Label" parent="NoteContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="ExpectedScoreLabel" type="Label" parent="."]
+layout_mode = 2
+horizontal_alignment = 1
+
+[connection signal="text_changed" from="TeamId" to="." method="_on_team_id_text_changed"]
