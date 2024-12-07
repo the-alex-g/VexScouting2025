@@ -1,5 +1,5 @@
 class_name Team
-extends VBoxContainer
+extends PanelContainer
 
 enum AutonTasks {RINGS_SCORED, CROSSED_LINE, TOUCH_BAR}
 enum DriverControl {RINGS_SCORED, CLIMB_LEVEL, WALL_STAKE, HIGH_STAKE, GOAL_CLAMP}
@@ -7,24 +7,34 @@ enum DriverControl {RINGS_SCORED, CLIMB_LEVEL, WALL_STAKE, HIGH_STAKE, GOAL_CLAM
 var team_id : String : get = get_team_id
 var _next_note_field : LineEdit : set = _set_next_note_field
 
+@export var is_red := false :
+	set(value):
+		is_red = value
+		if is_red:
+			self_modulate = Color.RED
+		else:
+			self_modulate = Color.BLUE
+
 @onready var _auton_tasks := {
-	AutonTasks.RINGS_SCORED : $Auton/RingsScored,
-	AutonTasks.CROSSED_LINE : $Auton/CrossedLine,
-	AutonTasks.TOUCH_BAR : $Auton/Bar
+	AutonTasks.RINGS_SCORED : $Body/Auton/RingsScored,
+	AutonTasks.CROSSED_LINE : $Body/Auton/CrossedLine,
+	AutonTasks.TOUCH_BAR : $Body/Auton/Bar
 }
 @onready var _driver_control := {
-	DriverControl.RINGS_SCORED : $DriverControl/TotalRingsScored,
-	DriverControl.CLIMB_LEVEL : $DriverControl/ClimbLevel,
-	DriverControl.WALL_STAKE : $DriverControl2/WallStake,
-	DriverControl.HIGH_STAKE : $DriverControl2/HighStake,
-	DriverControl.GOAL_CLAMP : $DriverControl2/GoalClamp,
+	DriverControl.RINGS_SCORED : $Body/DriverControl/TotalRingsScored,
+	DriverControl.WALL_STAKE : $Body/DriverControl2/WallStake,
+	DriverControl.HIGH_STAKE : $Body/DriverControl2/HighStake,
+	DriverControl.GOAL_CLAMP : $Body/DriverControl2/GoalClamp,
 }
-@onready var _team_id_line_edit : LineEdit = $TeamID
-@onready var _note_container : VBoxContainer = $Notes
+@onready var _team_id_line_edit : LineEdit = $Body/VBoxContainer/TeamID
+@onready var _note_container : VBoxContainer = $Body/Notes
 
 
 func _ready()->void:
-	_set_next_note_field($Notes/NoteField)
+	_set_next_note_field($Body/Notes/NoteField)
+	if is_red:
+		$Body/VBoxContainer/IsRedCheckbox.button_pressed = true
+	is_red = is_red
 
 
 func get_team_id()->String:
@@ -93,3 +103,7 @@ func _add_new_note_field()->void:
 func _on_next_note_field_text_changed(new_text:String)->void:
 	if new_text != "":
 		_add_new_note_field()
+
+
+func _on_is_red_checkbox_toggled(toggled_on: bool) -> void:
+	is_red = toggled_on
