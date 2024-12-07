@@ -76,7 +76,7 @@ func _on_server_button_pressed() -> void:
 
 func _on_client_button_pressed() -> void:
 	var peer := ENetMultiplayerPeer.new()
-	peer.create_client("127.0.0.1", 7000)
+	peer.create_client($Panel/VBoxContainer/HBoxContainer/LineEdit.text, 7000)
 	multiplayer.multiplayer_peer = peer
 	_on_load_panel.hide()
 	_team_lookup_section.hide()

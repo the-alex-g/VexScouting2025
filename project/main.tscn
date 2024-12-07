@@ -97,9 +97,17 @@ alignment = 1
 layout_mode = 2
 text = "Create a Server"
 
-[node name="ClientButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ClientButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Create a Client"
+
+[node name="LineEdit" type="LineEdit" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "IP Address"
+expand_to_text_length = true
 
 [node name="LocalButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -108,5 +116,5 @@ text = "Run Locally"
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="text_changed" from="ScrollContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="Panel/VBoxContainer/ServerButton" to="." method="_on_server_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/ClientButton" to="." method="_on_client_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/ClientButton" to="." method="_on_client_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/LocalButton" to="." method="_on_local_button_pressed"]
